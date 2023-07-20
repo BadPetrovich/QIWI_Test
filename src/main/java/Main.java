@@ -18,7 +18,7 @@ public class Main {
 
         String valute;
         try (Scanner inValute = new Scanner(System.in)) {
-            System.out.println("Данные о какой валюте вы хотите получить?");
+            System.out.println("What valute data do you need? Type valute short name - 3 letters");
             valute = inValute.next();
         }
 
@@ -41,7 +41,7 @@ public class Main {
             itemId++;
         }
         if(!wasFound){
-            throw new Exception("Проверьте корректность введеного сокращения валюты");
+            throw new Exception("Check your input");
         }
     }
 
@@ -66,7 +66,7 @@ public class Main {
         StringBuilder response;
         Scanner in = new Scanner(System.in);
         try {
-            System.out.println("Введите желаемую дату в формате DD/MM/YYYY или в формте DD.MM.YYYY");
+            System.out.println("Type data in specific format like DD/MM/YYYY or DD.MM.YYYY");
             String date = in.next();
             response = new StringBuilder();
             if (Pattern.matches("\\d{2}\\/\\d{2}\\/\\d{4}",date) ||
@@ -81,7 +81,7 @@ public class Main {
                     }
                 }
             } else {
-                throw new Exception("Проверьте корректность введенных данных");
+                throw new Exception("Check your input correctness");
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -91,8 +91,8 @@ public class Main {
                 .parse(new ByteArrayInputStream(response.toString().getBytes()));
 
         try {
-            System.out.println("Введите 1, если хотите получить данные о конкретной валюте" +
-                    " или 2, чтобы получить данные о всех валютах");
+            System.out.println("Type 1, if you want to check info about concrete valute" +
+                    " or 2, if you want data about all valutes");
             int i = in.nextInt();
             switch (i){
                 case 1:
@@ -102,7 +102,7 @@ public class Main {
                     Main.allValutesPerDate(doc);
                     break;
                 default:
-                    throw new Exception("Проверьте ввод");
+                    throw new Exception("Check your input");
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
